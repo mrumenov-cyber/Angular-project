@@ -1,40 +1,38 @@
 <mat-card>
-  <!--#postForm="ngForm" gives us access to form that Angular created for us behind the scenes-->
-  <form submit="OnAddPost(postForm)" #postForm="ngForm">
+   <!--#postForm="ngForm" gives us access to form that Angular created for us behind the scenes-->
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field>
       <!-- Two way binding [(ngModel)]="binding" - listen to user input and store that new text in this area -->
       <!--[(ngModel)]="enteredTitle", when we have all wrapped up in <forms> we don't have to use two way binding like this -->
       <input
-      matInput
-      type="text"
-      name="title"
-      ngModel
-      #title="ngModel"
-      required
-     >
-     <mat-error *ngIf="title.invalid">Plese enter a post title.</mat-error>
+        matInput
+        type="text"
+        name="title"
+        ngModel
+        required
+        minlength="3"
+        placeholder="Post Title"
+        #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
     </mat-form-field>
     <mat-form-field>
         <!-- value propery in text put in [] is now a typeScriot code [value]="newPost" #postInput,-->
         <!-- Two way binding [(ngModel)]="binding" - listen to user input and store that new text in this area -->
         <!--matinput argument is a Angular MATERIAL and it does not work without being wrapped in <mat-form-field> component-->
-        <textarea
+      <textarea
         matInput
-        rows="10"
+        rows="4"
         name="content"
         ngModel
         required
-        minlength="3"
+        placeholder="Post Content"
         #content="ngModel"></textarea>
-        <mat-error *ngIf="content.invalid">Plese enter text here.</mat-error>
+      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
     </mat-form-field>
-    <!-- Here in Angular, (click)="" and then adding a simple logic behind a click is possible-->
     <button
       mat-raised-button
-      color="primary"
-      type="submit"
-      >Save Post</button>
+      color="accent"
+      type="submit">Save Post</button>
   </form>
-  <!-- {{ string interpolation - refering to something inside .ts component in this case post-create.component.ts  }}-->
 </mat-card>
 

@@ -6,12 +6,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create/post-create.component';
+import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header/header.component';
-import { PostListComponent } from './posts/post-list/post-list/post-list.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostsService } from './posts/post.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { PostListComponent } from './posts/post-list/post-list/post-list.compone
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
