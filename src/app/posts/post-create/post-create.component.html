@@ -1,38 +1,40 @@
 <mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
    <!--#postForm="ngForm" gives us access to form that Angular created for us behind the scenes-->
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+   <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <!-- Two way binding [(ngModel)]="binding" - listen to user input and store that new text in this area -->
       <!--[(ngModel)]="enteredTitle", when we have all wrapped up in <forms> we don't have to use two way binding like this -->
-      <input
-        matInput
-        type="text"
-        name="title"
-        ngModel
-        required
-        minlength="3"
-        placeholder="Post Title"
-        #title="ngModel">
-      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
-    </mat-form-field>
-    <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="title"
+            [ngModel]="post?.title"
+            required
+            minlength="3"
+            placeholder="Post Title"
+            #title="ngModel">
+          <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
         <!-- value propery in text put in [] is now a typeScriot code [value]="newPost" #postInput,-->
         <!-- Two way binding [(ngModel)]="binding" - listen to user input and store that new text in this area -->
         <!--matinput argument is a Angular MATERIAL and it does not work without being wrapped in <mat-form-field> component-->
-      <textarea
-        matInput
-        rows="4"
-        name="content"
-        ngModel
-        required
-        placeholder="Post Content"
-        #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit">Save Post</button>
-  </form>
-</mat-card>
+          <textarea
+          matInput
+          rows="4"
+          name="content"
+          [ngModel]="post?.content"
+          required
+          placeholder="Post Content"
+          #content="ngModel"></textarea>
+        <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit">Save Post</button>
+    </form>
+  </mat-card>
+
 
